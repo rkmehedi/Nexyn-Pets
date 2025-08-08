@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+:root {
+  --color-primary: #03b57b;
+  --color-secondary: #8D8070;
+  --color-accent: #B8734A;
+  --color-muted: #C0A1A2;
+  --color-background-alt: #A9A299;
+}
