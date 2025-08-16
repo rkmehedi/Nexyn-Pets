@@ -6,12 +6,12 @@ import bannerImage from '../../assets/banner.jpg';
 const Banner = () => {
     return (
         <div 
-            className="relative bg-cover bg-center h-[600px] rounded-2xl overflow-hidden shadow-2xl" 
+            className="relative bg-cover bg-center h-[600px] rounded-2xl overflow-hidden shadow-2xl mx-4" 
             style={{ backgroundImage: `url(${bannerImage})` }}
         >
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20"></div>
             
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
                 <h1 
                     className="text-4xl md:text-6xl font-extrabold leading-tight mb-4" 
                     style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}

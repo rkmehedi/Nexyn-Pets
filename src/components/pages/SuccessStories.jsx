@@ -9,7 +9,7 @@ const stories = [
     {
         image: story1,
         petName: 'Luna',
-        story: '"We found Luna on Nexyn Pets, and she has brought so much joy into our lives. The process was smooth, and we couldn\'t be happier with our new furry family member!"',
+        story: '"We found Luna on Nexyn Pets, She has brought so much joy into our lives. The process was smooth, and we couldn\'t be happier with our furry family member!"',
         adopter: 'The Smith Family'
     },
     {
@@ -28,7 +28,7 @@ const stories = [
 
 const SuccessStories = () => {
     return (
-        <div className="bg-white text-black dark:bg-gray-900 dark:text-white py-16">
+        <div className="bg-white text-black dark:bg-gray-900 dark:text-white pt-16">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <Fade direction="down" cascade damping={0.1} triggerOnce>

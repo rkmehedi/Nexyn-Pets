@@ -6,11 +6,14 @@ import ctaImage from '../../assets/cta-background.jpg';
 
 const CallToAction = () => {
     return (
-        <div className="container mx-auto px-4 py-1">
-            <h2 className="text-4xl text-center font-extrabold text-gray-800 pb-12">
+        <div className="container mx-auto px-4 pt-16">
+            <h2 className="text-4xl text-center font-extrabold mb-2 text-gray-800">
 
                         Never Leave them Alone
                     </h2>
+                    <p className="text-lg text-gray-500 max-w-auto text-center mx-auto  pb-12">
+                           Even the smallest help can change a life.
+Stand beside them,because your presence is their strength.   </p>
             <div 
                 className="relative bg-cover bg-center rounded-2xl overflow-hidden shadow-2xl py-20 px-8 text-center"
                 style={{ backgroundImage: `url(${ctaImage})` }}

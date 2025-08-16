@@ -10,7 +10,7 @@ const MainLayout = () => {
     <div className='bg-white text-black dark:bg-gray-900 dark:text-white'>
       <Navbar />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-16">
         <Outlet />
         <ToastContainer />
       </main>

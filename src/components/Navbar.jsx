@@ -51,7 +51,7 @@ const Navbar = () => {
   return (
     <nav className="bg-[var(--color-primary)] shadow-lg sticky top-0 z-50 border-b-4 border-[var(--color-accent)]">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-2">
+        <div className="px-4 flex justify-between items-center py-2">
           <Link to="/">
             <img src={logo} alt="Nexyn Pets Logo" className="h-12" />
           </Link>

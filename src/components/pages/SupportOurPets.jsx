@@ -24,11 +24,11 @@ const SupportOurPets = () => {
     ];
 
     return (
-        <div className="bg-white text-black dark:bg-gray-900 dark:text-white py-12">
+        <div className="bg-white text-black dark:bg-gray-900 dark:text-white pt-16">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <Fade direction="down" cascade damping={0.1} triggerOnce>
-                        <h2 className="text-4xl font-extrabold text-gray-800 mb-8">
+                        <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
                             Can't Adopt? You Can Still Help!
                         </h2>
                         <p className="text-lg text-gray-500 max-w-3xl mx-auto">

@@ -19,10 +19,10 @@ const Newsletter = () => {
 
     return (
         <div className="">
-            <div className="container mx-auto px-4 py-13">
+            <div className="container mx-auto px-4 pt-16">
                 <div className="bg-white text-black dark:bg-gray-900 dark:text-white p-8 sm:p-12 rounded-2xl shadow-xl text-center">
                     <Fade direction="down" cascade damping={0.1} triggerOnce>
-                        <h2 className="text-4xl font-extrabold text-gray-800 mb-8">
+                        <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
                             Join Our Community
                         </h2>
                         <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8">

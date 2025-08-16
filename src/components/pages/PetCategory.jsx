@@ -19,7 +19,7 @@ const categories = [
 
 const PetCategory = () => {
     return (
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 pt-16">
             <div className="text-center font-bold text-[#7A874E] mb-12">
                 <Fade direction="down" cascade damping={0.1} triggerOnce>
                     <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
