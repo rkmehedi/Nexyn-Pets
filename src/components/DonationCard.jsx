@@ -6,7 +6,7 @@ const DonationCard = ({ campaign }) => {
   const { _id, petImage, petName, maxDonationAmount, donatedAmount } = campaign;
 
   return (
-    <Card className="w-full max-w-sm mx-auto group rounded-2xl shadow-md hover:shadow-2xl hover:shadow-orange-400 transition-shadow duration-300 hover:scale-[1.02]">
+    <Card className="max-w-full mx-auto group rounded-2xl shadow-md hover:shadow-2xl hover:shadow-orange-400 transition-shadow duration-300 hover:scale-[1.02]">
       <div className="relative h-64 rounded-t-2xl overflow-hidden">
         <img
           src={petImage}
@@ -31,9 +31,10 @@ const DonationCard = ({ campaign }) => {
 
         <div className="mt-3">
           <Link to={`/donations/${_id}`}>
-            <Button className="w-full bg-[var(--color-accent)] enabled:hover:bg-gradient-to-r from-[#56B4D3] to-[#02AAB0]">
+            <div className=' w-full flex justify-center items-center'><Button className="w-full bg-[var(--color-accent)] enabled:hover:bg-gradient-to-r from-[#56B4D3] to-[#02AAB0]">
               View Details
             </Button>
+            </div>
           </Link>
         </div>
       </div>

@@ -59,7 +59,7 @@ const AdoptionRequests = () => {
 
     if (isLoading) {
         return (
-            <div className="max-w-7xl mx-auto bg-white dark:bg-gray-900 p-10 rounded-xl shadow-lg mt-12">
+            <div className="max-w-full mx-auto bg-white dark:bg-gray-900 p-10 rounded-xl shadow-lg mt-12">
                 <h2 className="text-4xl font-bold text-center mb-8 text-black dark:text-white">Adoption Requests</h2>
                 <div className="lg:hidden space-y-4">
                     {Array.from({ length: 3 }).map((_, i) => <RequestCardSkeleton key={i} />)}
@@ -72,8 +72,8 @@ const AdoptionRequests = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto bg-white text-black dark:bg-gray-900 dark:text-white p-6 sm:p-10 rounded-xl shadow-xl mt-12">
-            <h2 className="text-4xl font-bold text-center mb-10">Adoption Requests</h2>
+        <div className="max-w-full mx-auto bg-white text-black dark:bg-gray-900 dark:text-white p-6  rounded-xl shadow-xl">
+            <h2 className="text-3xl font-bold text-center mb-8">Adoption Requests</h2>
             <div className="hidden lg:block overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow">
                 <table className="min-w-full table-auto text-lg">
                     <thead className="bg-gray-100 dark:bg-gray-800">

@@ -73,8 +73,8 @@ const MyDonations = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto bg-white text-black dark:bg-gray-900 dark:text-white p-10 rounded-xl shadow-xl mt-12">
-            <h2 className="text-4xl font-bold text-center mb-10">My Donation History</h2>
+        <div className="max-w-full mx-auto bg-white text-black dark:bg-gray-900 dark:text-white p-6 rounded-xl shadow-xl">
+            <h2 className="text-3xl font-bold text-center mb-8">My Donation History</h2>
             
             <div className="hidden lg:block overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow">
                 <table className="min-w-full table-auto text-lg">
