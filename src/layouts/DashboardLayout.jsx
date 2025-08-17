@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router';
 import {
   FaHome, FaPlus, FaList, FaDonate, FaQuestionCircle,
   FaBars, FaTimes, FaHandHoldingHeart, FaUsers, FaPaw, FaShieldAlt,
-  FaUserFriends
+  FaUserFriends, FaChartBar
 } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 import useAdmin from '../hooks/useAdmin';
@@ -23,6 +23,7 @@ const DashboardLayout = () => {
         to={to}
         onClick={closeSidebar}
         className="flex items-center p-2 rounded-lg transition-colors duration-200"
+        end
       >
         {icon}
         <span className="ml-3">{text}</span>
@@ -35,6 +36,7 @@ const DashboardLayout = () => {
       <li className="px-2 pt-4 text-xs font-semibold text-gray-400 uppercase flex items-center gap-2">
         <FaUsers className="text-sm" /> User Panel
       </li>
+      {menuLink('/dashboard/overview', <FaChartBar />, 'Overview')}
       {menuLink('/dashboard/edit-profile', <FaUserFriends />, 'Edit Profile')}
       {menuLink('/dashboard/add-pet', <FaPlus />, 'Add a Pet')}
       {menuLink('/dashboard/my-added-pets', <FaList />, 'My Added Pets')}

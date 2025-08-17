@@ -32,6 +32,7 @@ import InternalErrorPage from "../components/pages/InternalErrorPage";
 import ContactUs from "../components/pages/ContactUs";
 import Profile from "../components/pages/Profile";
 import EditProfile from "../components/pages/EditProfile";
+import DashboardOverview from "../components/pages/DashboardOverview";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,7 @@ children:[
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
       { path: "add-pet", element: <PrivateRoute><AddPet /></PrivateRoute> },
+      { path: "overview", element: <PrivateRoute><DashboardOverview /></PrivateRoute> },
       { path: "edit-profile", element: <PrivateRoute><EditProfile /></PrivateRoute> },
       { path: "my-added-pets", element: <PrivateRoute><MyAddedPets /></PrivateRoute> },
       { path: "update-pet/:id", element: <PrivateRoute><UpdatePet /></PrivateRoute> },

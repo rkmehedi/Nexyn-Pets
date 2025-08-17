@@ -117,7 +117,7 @@ const Navbar = () => {
                   </span>
                 </DropdownHeader>
                 
-                <DropdownItem as={Link} to="/dashboard">
+                <DropdownItem as={Link} to="/dashboard/overview">
                   Dashboard
                 </DropdownItem>
                 <DropdownDivider />

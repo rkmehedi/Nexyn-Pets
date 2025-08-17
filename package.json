@@ -39,6 +39,7 @@
     "react-select": "^5.10.2",
     "react-toastify": "^11.0.5",
     "react-type-animation": "^3.2.0",
+    "recharts": "^3.1.2",
     "stripe": "^18.3.0",
     "sweetalert2": "^11.22.2",
     "sweetalert2-react-content": "^5.1.0"
