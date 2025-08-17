@@ -28,6 +28,9 @@ const DonationCard = ({ campaign }) => {
             Maximum donation: <span className="font-bold text-gray-900">${maxDonationAmount}</span>
           </p>
         </div>
+        <div>
+          P
+        </div>
 
         <div className="mt-3">
           <Link to={`/donations/${_id}`}>

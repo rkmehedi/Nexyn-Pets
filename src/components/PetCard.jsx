@@ -33,6 +33,7 @@ const PetCard = ({ pet }) => {
             <span>{petLocation}</span>
           </div>
         </div>
+        <p className="text-lg "><span className='text-gray-600'>{pet.shortDescription}</span></p>
 
         <div className="flex justify-end pt-2">
           <Link to={`/pets/${_id}`}>

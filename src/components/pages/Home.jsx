@@ -9,6 +9,7 @@ import AboutUs from './AboutUs';
 import SuccessStories from './SuccessStories';
 import Newsletter from './Newsletter';
 import SupportOurPets from './SupportOurPets';
+import PetCareTips from './PetCareTips';
 
 const Home = () => {
     return (
@@ -17,7 +18,7 @@ const Home = () => {
             <PetCategory/>
             <SupportOurPets/>
             <CallToAction/>
-            
+            <PetCareTips/>
             <AboutUs/>
             <SuccessStories/>
             <Newsletter/>
