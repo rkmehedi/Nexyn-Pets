@@ -29,7 +29,7 @@ const DonationCard = ({ campaign }) => {
           </p>
         </div>
         <div>
-          P
+          <p className="text-lg text-gray-600">{campaign.shortDescription}</p>
         </div>
 
         <div className="mt-3">
