@@ -56,27 +56,35 @@ const Navbar = () => {
             <img src={logo} alt="Nexyn Pets Logo" className="h-12" />
           </Link>
           <ul className="hidden md:flex items-center space-x-4 text-lg text-white font-medium">
-            <li>
-              <NavLink to="/" className={navLinkClass} end>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/pet-listing" className={navLinkClass}>
-                Pet Listing
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/donation-campaigns" className={navLinkClass}>
-                Donation Campaigns
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact-us" className={navLinkClass}>
-                Contact Us
-              </NavLink>
-            </li>
-          </ul>
+  <li>
+    <NavLink to="/" className={navLinkClass} end>
+      Home
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/pet-listing" className={navLinkClass}>
+      Pet Listing
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/donation-campaigns" className={navLinkClass}>
+      Donation Campaigns
+    </NavLink>
+  </li>
+  {user && (
+    <li>
+      <NavLink to="/profile" className={navLinkClass}>
+        My Profile
+      </NavLink>
+    </li>
+  )}
+  <li>
+    <NavLink to="/contact-us" className={navLinkClass}>
+      Contact Us
+    </NavLink>
+  </li>
+</ul>
+
           <div className="hidden md:flex items-center space-x-4">
             <div className="text-white">
               <ToggleSwitch
@@ -108,6 +116,9 @@ const Navbar = () => {
                     {user.email}
                   </span>
                 </DropdownHeader>
+                <DropdownItem as={Link} to="/dashboard/edit-profile">
+                  Edit Profile
+                </DropdownItem>
                 <DropdownItem as={Link} to="/dashboard">
                   Dashboard
                 </DropdownItem>

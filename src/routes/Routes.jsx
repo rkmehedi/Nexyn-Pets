@@ -30,6 +30,8 @@ import AdminRoute from "./AdminRoute";
 import ErrorPage from "../components/pages/ErrorPage";
 import InternalErrorPage from "../components/pages/InternalErrorPage";
 import ContactUs from "../components/pages/ContactUs";
+import Profile from "../components/pages/Profile";
+import EditProfile from "../components/pages/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -47,11 +49,21 @@ export const router = createBrowserRouter([
       { path: "contact-us", element: <ContactUs /> },
     ],
   },
+{
+path: "/",
+element: <MainLayout />,
+children:[
+{ path: "profile", element: <Profile /> },
+],
+   
+},
+
   {
     path: "/dashboard",
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
       { path: "add-pet", element: <PrivateRoute><AddPet /></PrivateRoute> },
+      { path: "edit-profile", element: <PrivateRoute><EditProfile /></PrivateRoute> },
       { path: "my-added-pets", element: <PrivateRoute><MyAddedPets /></PrivateRoute> },
       { path: "update-pet/:id", element: <PrivateRoute><UpdatePet /></PrivateRoute> },
       { path: "create-donation-campaign", element: <PrivateRoute><CreateDonationCampaign /></PrivateRoute> },
