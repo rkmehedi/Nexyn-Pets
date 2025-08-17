@@ -116,9 +116,7 @@ const Navbar = () => {
                     {user.email}
                   </span>
                 </DropdownHeader>
-                <DropdownItem as={Link} to="/dashboard/edit-profile">
-                  Edit Profile
-                </DropdownItem>
+                
                 <DropdownItem as={Link} to="/dashboard">
                   Dashboard
                 </DropdownItem>

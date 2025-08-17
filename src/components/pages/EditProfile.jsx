@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router';
-import { Button, Spinner, Label, TextInput, FileInput } from 'flowbite-react';
+import { Button, Spinner, TextInput, FileInput } from 'flowbite-react';
 import { FaSave, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 import noPhoto from '../../assets/default.jpg';
+import { useQuery } from '@tanstack/react-query';
 
 const IMGBB_API_KEY = import.meta.env.VITE_IMGBB_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
@@ -15,14 +17,23 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
 const EditProfile = () => {
     const { user, loading, updateUserProfile, setLoading } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
+
+    const { data: dbUser, isLoading: isDbUserLoading } = useQuery({
+        queryKey: ['dbUser', user?.email],
+        queryFn: async () => (await axiosSecure.get(`/user/${user.email}`)).data,
+        enabled: !!user?.email,
+    });
 
     useEffect(() => {
-        if (user) {
-            setValue('name', user.displayName);
+        if (dbUser) {
+            setValue('name', dbUser.name);
+            setValue('phone', dbUser.phone);
+            setValue('address', dbUser.address);
         }
-    }, [user, setValue]);
+    }, [dbUser, setValue]);
 
     const handleUpdateProfile = async (data) => {
         setLoading(true);
@@ -42,30 +53,27 @@ const EditProfile = () => {
             }
         }
 
-        updateUserProfile(data.name, newPhotoURL)
-            .then(() => {
-                setLoading(false);
-                Swal.fire({
-                    title: "Success!",
-                    text: "Your profile has been updated.",
-                    icon: "success",
-                    timer: 2000,
-                    showConfirmButton: false,
-                });
-                navigate('/profile');
-            })
-            .catch(error => {
-                toast.error(error.message);
-                setLoading(false);
-            });
+        await updateUserProfile(data.name, newPhotoURL);
+
+        const updatedDbInfo = {
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+        };
+        await axiosSecure.patch(`/user/${user.email}`, updatedDbInfo);
+        
+        setLoading(false);
+        Swal.fire({
+            title: "Success!",
+            text: "Your profile has been updated.",
+            icon: "success",
+        }).then(() => {
+            navigate('/profile');
+        });
     };
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <Spinner size="xl" />
-            </div>
-        );
+    if (loading || isDbUserLoading) {
+        return <div className="flex justify-center items-center h-screen"><Spinner size="xl" /></div>;
     }
 
     return (
@@ -78,16 +86,27 @@ const EditProfile = () => {
                             <img src={user?.photoURL || noPhoto} alt="Current Profile" className="w-32 h-32 rounded-full object-cover ring-4 ring-[var(--color-accent)]" />
                         </div>
                         <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="name" value="Your Name" color="gray" />
-                            </div>
-                            <TextInput id="name" {...register("name", { required: "Name is required" })} />
-                            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                                Your Name
+                            </label>
+                            <TextInput id="name" {...register("name", { required: true })} />
                         </div>
                         <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="image" value="Update Profile Picture (Optional)" color="gray" />
-                            </div>
+                            <label htmlFor="phone" className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                                Phone Number
+                            </label>
+                            <TextInput id="phone" {...register("phone")} />
+                        </div>
+                        <div>
+                            <label htmlFor="address" className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                                Address
+                            </label>
+                            <TextInput id="address" {...register("address")} />
+                        </div>
+                        <div>
+                            <label htmlFor="image" className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                                Update Profile Picture (Optional)
+                            </label>
                             <FileInput id="image" {...register("image")} />
                         </div>
                         <div className="flex items-center gap-4">

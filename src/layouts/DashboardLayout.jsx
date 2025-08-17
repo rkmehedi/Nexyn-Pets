@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router';
 import {
   FaHome, FaPlus, FaList, FaDonate, FaQuestionCircle,
-  FaBars, FaTimes, FaHandHoldingHeart, FaUsers, FaPaw, FaShieldAlt
+  FaBars, FaTimes, FaHandHoldingHeart, FaUsers, FaPaw, FaShieldAlt,
+  FaUserFriends
 } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 import useAdmin from '../hooks/useAdmin';
@@ -34,6 +35,7 @@ const DashboardLayout = () => {
       <li className="px-2 pt-4 text-xs font-semibold text-gray-400 uppercase flex items-center gap-2">
         <FaUsers className="text-sm" /> User Panel
       </li>
+      {menuLink('/dashboard/edit-profile', <FaUserFriends />, 'Edit Profile')}
       {menuLink('/dashboard/add-pet', <FaPlus />, 'Add a Pet')}
       {menuLink('/dashboard/my-added-pets', <FaList />, 'My Added Pets')}
       {menuLink('/dashboard/adoption-requests', <FaQuestionCircle />, 'Adoption Requests')}
