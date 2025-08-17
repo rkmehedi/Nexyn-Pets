@@ -21,10 +21,13 @@ const PetListing = () => {
     const axiosPublic = useAxiosPublic();
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState('');
+    const [sortBy, setSortBy] = useState('dateAdded');
+    const [sortOrder, setSortOrder] = useState('desc');
+    const [menuOpen, setMenuOpen] = useState(false);
     const { ref, inView } = useInView();
 
     const fetchPets = async ({ pageParam = 0 }) => {
-        const res = await axiosPublic.get(`/pets?search=${searchTerm}&category=${category}&page=${pageParam}`);
+        const res = await axiosPublic.get(`/pets?search=${searchTerm}&category=${category}&page=${pageParam}&sortBy=${sortBy}&sortOrder=${sortOrder}`);
         return res.data;
     };
 
@@ -35,8 +38,9 @@ const PetListing = () => {
         hasNextPage,
         isFetchingNextPage,
         isLoading,
+        refetch,
     } = useInfiniteQuery({
-        queryKey: ['pets', searchTerm, category],
+        queryKey: ['pets', searchTerm, category, sortBy, sortOrder],
         queryFn: fetchPets,
         getNextPageParam: (lastPage) => {
             if (lastPage.currentPage < lastPage.totalPages - 1) {
@@ -53,10 +57,28 @@ const PetListing = () => {
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
+    useEffect(() => {
+        refetch();
+    }, [sortBy, sortOrder, refetch]);
+
     const handleSearch = (e) => {
         e.preventDefault();
         const text = e.target.search.value;
         setSearchTerm(text);
+    };
+
+    const applySort = (field, order) => {
+        setSortBy(field);
+        setSortOrder(order);
+        setMenuOpen(false);
+    };
+
+    const currentSortLabel = () => {
+        if (sortBy === 'dateAdded' && sortOrder === 'desc') return 'Date (Newest First)';
+        if (sortBy === 'dateAdded' && sortOrder === 'asc') return 'Date (Oldest First)';
+        if (sortBy === 'petName' && sortOrder === 'asc') return 'Name (A → Z)';
+        if (sortBy === 'petName' && sortOrder === 'desc') return 'Name (Z → A)';
+        return 'Sort Options';
     };
 
     const pets = data?.pages.flatMap(page => page.pets) ?? [];
@@ -87,23 +109,55 @@ const PetListing = () => {
                 <div className="bg-white text-black dark:bg-gray-900 dark:text-white p-8 rounded-2xl shadow-lg text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800">Meet Your New Best Friend</h2>
                     <p className="text-gray-500 mt-2">Browse our available pets waiting for a loving home.</p>
-                    <div className="mt-6 flex flex-col md:flex-row items-center justify-center gap-4">
-                        <form onSubmit={handleSearch} className="flex-grow w-full md:w-auto md:max-w-md">
-                            <TextInput
-                                id="search"
-                                name="search"
-                                placeholder="Search by pet name..."
-                                rightIcon={FaSearch}
-                                className="w-full"
-                            />
-                        </form>
-                        <Select
-                            options={petCategories}
-                            onChange={(selectedOption) => setCategory(selectedOption?.value || '')}
-                            className="w-full md:w-64 bg-white text-black dark:bg-gray-900 dark:text-white"
-                            placeholder="Filter by category..."
-                            isClearable
-                        />
+                </div>
+
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg mb-12 flex flex-col md:flex-row items-center gap-4">
+                    <form onSubmit={handleSearch} className="flex-grow w-full md:w-auto">
+                        <TextInput id="search" name="search" placeholder="Search by pet name..." rightIcon={FaSearch} className="w-full" />
+                    </form>
+                    <Select
+                        options={petCategories}
+                        onChange={(selectedOption) => setCategory(selectedOption?.value || '')}
+                        className="w-full md:w-64"
+                        placeholder="Filter by category..."
+                        isClearable
+                    />
+                    <div className="relative">
+                        <button
+                            onClick={() => setMenuOpen((v) => !v)}
+                            className="px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white enabled:hover:bg-gradient-to-r from-[#56B4D3] to-[#02AAB0] shadow"
+                        >
+                            {currentSortLabel()}
+                        </button>
+                        {menuOpen && (
+                            <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-20">
+                                <div className="px-4 py-2 text-sm font-semibold text-gray-600 dark:text-gray-300">Sort By</div>
+                                <button
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    onClick={() => applySort('dateAdded', 'desc')}
+                                >
+                                    Date (Newest First)
+                                </button>
+                                <button
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    onClick={() => applySort('dateAdded', 'asc')}
+                                >
+                                    Date (Oldest First)
+                                </button>
+                                <button
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    onClick={() => applySort('petName', 'asc')}
+                                >
+                                    Name (A → Z)
+                                </button>
+                                <button
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    onClick={() => applySort('petName', 'desc')}
+                                >
+                                    Name (Z → A)
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
 
