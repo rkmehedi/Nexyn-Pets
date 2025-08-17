@@ -4,20 +4,20 @@ import { Button } from 'flowbite-react';
 
 const InternalErrorPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-100 to-red-300 dark:from-gray-900 dark:to-gray-800 px-4">
-      <div className="max-w-xl text-center space-y-6 p-8 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md rounded-xl shadow-lg">
-        <h1 className="text-5xl font-extrabold text-red-600 dark:text-red-400">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--color-accent)] px-4">
+      <div className="max-w-xl text-center space-y-6 p-8 backdrop-blur-md">
+        <h1 className="text-5xl font-extrabold ">
           500 Error
         </h1>
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
           Oops! Something went wrong.
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-gray-800 ">
           We are sorry, but we could not load the data you requested. Try again later or return to the homepage.
         </p>
         <div className="flex justify-center">
           <Link to="/">
-            <Button gradientDuoTone="pinkToOrange" pill>
+            <Button gradientDuoTone="pinkToOrange" className='bg-[var(--color-primary)]  font-bold enabled:hover:bg-gradient-to-r from-[#56B4D3] to-[#02AAB0] transition-all duration-300 transform hover:scale-105 shadow-lg' pill>
               Back to Home
             </Button>
           </Link>

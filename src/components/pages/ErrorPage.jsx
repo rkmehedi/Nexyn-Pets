@@ -7,7 +7,7 @@ const ErrorPage = () => {
     const error = useRouteError();
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-red-500 to-red-800 text-center px-4 text-white">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-[var(--color-accent)] text-center px-4 text-white">
             <FaExclamationTriangle className="w-24 h-24 text-white/80 mb-8 animate-pulse" />
             <h1 className="text-6xl font-extrabold mb-4" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}>
                 Oops!
@@ -29,7 +29,7 @@ const ErrorPage = () => {
             <Link to="/">
                 <Button 
                     size="lg" 
-                    className="bg-white text-red-700 font-bold enabled:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="bg-[var(--color-primary)]  font-bold enabled:hover:bg-gradient-to-r from-[#56B4D3] to-[#02AAB0] transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                     <FaHome className="mr-2 h-5 w-5" />
                     Go Back Home

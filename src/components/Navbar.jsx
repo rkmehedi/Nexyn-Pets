@@ -46,7 +46,7 @@ const Navbar = () => {
     'px-4 py-1 rounded-[10px] font-normal transition-all duration-300 ease-in-out hover:bg-white/10';
 
   const authButtonClass =
-    'bg-gradient-to-br from-pink-500 to-orange-400 text-white hover:bg-gradient-to-bl hover:from-[#56B4D3] hover:to-[#02AAB0] font-medium rounded-lg text-sm px-4 py-2 text-center';
+    'bg-[var(--color-accent)] text-white hover:bg-gradient-to-bl hover:from-[#56B4D3] hover:to-[#02AAB0] font-medium rounded-lg text-sm px-4 py-2 text-center';
 
   return (
     <nav className="bg-[var(--color-primary)] shadow-lg sticky top-0 z-50 border-b-4 border-[var(--color-accent)]">
