@@ -29,6 +29,7 @@ import AdminRoute from "./AdminRoute";
 
 import ErrorPage from "../components/pages/ErrorPage";
 import InternalErrorPage from "../components/pages/InternalErrorPage";
+import ContactUs from "../components/pages/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
       { path: "donations/:id", element: <DonationDetails /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "contact-us", element: <ContactUs /> },
     ],
   },
   {

@@ -71,6 +71,11 @@ const Navbar = () => {
                 Donation Campaigns
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/contact-us" className={navLinkClass}>
+                Contact Us
+              </NavLink>
+            </li>
           </ul>
           <div className="hidden md:flex items-center space-x-4">
             <div className="text-white">
